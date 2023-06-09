@@ -140,7 +140,7 @@ const MyPostWidget = ({ picturePath }) => {
                 style={{
                     color: '#FFFFFF',
                     backgroundColor: palette.primary.main,
-                    borderRadius: "3rem",
+                    borderRadius: "2rem",
                 }}
                 >
                 POST

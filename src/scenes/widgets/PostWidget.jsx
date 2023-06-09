@@ -27,7 +27,7 @@ const PostWidget = ({
   const likeCount = Object.keys(likes).length;
   
   
-  const isSmScreen = useMediaQuery("(min-width: 481px) and (max-width: 768px)");
+  
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const { palette } = useTheme();
   const main = palette.neutral.main;
