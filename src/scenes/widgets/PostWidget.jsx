@@ -46,6 +46,8 @@ const PostWidget = ({
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
+  
+
   const patchLike = async () => {
     const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
       method: "PATCH",
@@ -65,7 +67,7 @@ const PostWidget = ({
 
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
-
+  
     const response = await fetch(`http://localhost:3001/posts/${postId}/comment`, {
       method: "POST",
       headers: {
@@ -74,11 +76,31 @@ const PostWidget = ({
       },
       body: JSON.stringify({ userId: loggedInUserId, comment: newComment }),
     });
-
+  
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
     setNewComment("");
+  
+    // Fetch the profile pictures for all users who posted comments
+    const updatedComments = [];
+    for (const comment of updatedPost.comments) {
+      const userResponse = await fetch(`http://localhost:3001/users/${comment.userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const user = await userResponse.json();
+      const userPicturePath = user.picturePath;
+  
+      updatedComments.push({ ...comment, userPicturePath });
+    }
+  
+    // Update the post with the updated comments
+    const updatedPostWithPictures = { ...updatedPost, comments: updatedComments };
+    dispatch(setPost({ post: updatedPostWithPictures }));
   };
+  
+
 
   return (
     <div
