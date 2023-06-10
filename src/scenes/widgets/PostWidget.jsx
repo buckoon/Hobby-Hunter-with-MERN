@@ -125,6 +125,11 @@ const PostWidget = ({
             src={`http://localhost:3001/assets/${picturePath}`}
             alt="post"
             className="rounded-lg"
+            style={{
+              objectFit: "cover",
+              width: "100%",
+              height: "450px", 
+            }}
           />
         )}
       </div>
