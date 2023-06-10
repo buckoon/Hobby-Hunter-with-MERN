@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
+import Comment from "components/Comment"; // Import the Comment component
 
 const PostWidget = ({
   postId,
@@ -137,9 +138,7 @@ const PostWidget = ({
           {comments.map((comment, i) => (
             <Box key={`${name}-${i}`}>
               <Divider />
-              <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
-                {comment}
-              </Typography>
+              <Comment comment={comment.comment} /> {/* Render the Comment component */}
             </Box>
           ))}
           <Divider />
