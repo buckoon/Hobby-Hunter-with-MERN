@@ -90,7 +90,6 @@ const PostWidget = ({
           <Friend
             friendId={postUserId}
             name={name}
-            subtitle={location}
             userPicturePath={userPicturePath}
           />
         </div>
@@ -138,7 +137,13 @@ const PostWidget = ({
           {comments.map((comment, i) => (
             <Box key={`${name}-${i}`}>
               <Divider />
-              <Comment comment={comment.comment} /> {/* Render the Comment component */}
+              <Comment
+                comment={comment.comment}
+                
+                userPicturePath={comment.userPicturePath}
+              />
+
+
             </Box>
           ))}
           <Divider />
