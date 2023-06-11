@@ -116,7 +116,10 @@ const PostWidget = ({
           />
         </div>
         <Divider sx={{ mb: 2 }} />
-        <p style={{ wordBreak: "break-word" }}>{description}</p>
+        <Typography sx={{ color: "black", wordBreak: "break-word", m: "0.5rem 0", pl: ".5rem" }}>
+         {description}
+        </Typography>
+
       </div>
 
       <div>
@@ -124,7 +127,7 @@ const PostWidget = ({
           <img
             src={`http://localhost:3001/assets/${picturePath}`}
             alt="post"
-            className="rounded-lg"
+            className="rounded-lg mt-2"
             style={{
               objectFit: "cover",
               width: "100%",
