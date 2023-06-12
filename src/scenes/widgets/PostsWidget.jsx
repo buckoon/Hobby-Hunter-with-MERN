@@ -9,7 +9,7 @@ const PostsWidget = () => {
   const token = useSelector((state) => state.token);
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:3001/posts", {
+    const response = await fetch("https://hobby-hunter-api.onrender.com/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -22,7 +22,7 @@ const PostsWidget = () => {
         const updatedComments = await Promise.all(
           post.comments.map(async (comment) => {
             const userResponse = await fetch(
-              `http://localhost:3001/users/${comment.userId}`,
+              `https://hobby-hunter-api.onrender.com/users/${comment.userId}`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -49,7 +49,7 @@ const PostsWidget = () => {
 
   return (
     <>
-      {posts.slice().reverse().map( // Reverse the posts array
+      {posts.slice().reverse().map(
         ({
           _id,
           userId,

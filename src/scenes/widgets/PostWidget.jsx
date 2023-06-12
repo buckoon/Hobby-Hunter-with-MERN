@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
-import Comment from "components/Comment"; // Import the Comment component
+import Comment from "components/Comment";
 
 const PostWidget = ({
   postId,
@@ -46,10 +46,8 @@ const PostWidget = ({
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
-  
-
   const patchLike = async () => {
-    const response = await fetch(`http://localhost:3001/posts/${postId}/like`, {
+    const response = await fetch(`https://hobby-hunter-api.onrender.com/posts/${postId}/like`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -67,8 +65,8 @@ const PostWidget = ({
 
   const handleCommentSubmit = async (event) => {
     event.preventDefault();
-  
-    const response = await fetch(`http://localhost:3001/posts/${postId}/comment`, {
+
+    const response = await fetch(`https://hobby-hunter-api.onrender.com/posts/${postId}/comment`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -76,31 +74,27 @@ const PostWidget = ({
       },
       body: JSON.stringify({ userId: loggedInUserId, comment: newComment }),
     });
-  
+
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
     setNewComment("");
-  
-    // Fetch the profile pictures for all users who posted comments
+
     const updatedComments = [];
     for (const comment of updatedPost.comments) {
-      const userResponse = await fetch(`http://localhost:3001/users/${comment.userId}`, {
+      const userResponse = await fetch(`https://hobby-hunter-api.onrender.com/users/${comment.userId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       const user = await userResponse.json();
       const userPicturePath = user.picturePath;
-  
+
       updatedComments.push({ ...comment, userPicturePath });
     }
-  
-    // Update the post with the updated comments
+
     const updatedPostWithPictures = { ...updatedPost, comments: updatedComments };
     dispatch(setPost({ post: updatedPostWithPictures }));
   };
-  
-
 
   return (
     <div
@@ -109,29 +103,24 @@ const PostWidget = ({
     >
       <div className="flex flex-col justify-between mr-2">
         <div className="flex items-center">
-          <Friend
-            friendId={postUserId}
-            name={name}
-            userPicturePath={userPicturePath}
-          />
+          <Friend friendId={postUserId} name={name} userPicturePath={userPicturePath} />
         </div>
         <Divider sx={{ mb: 2 }} />
         <Typography sx={{ color: "black", wordBreak: "break-word", m: "0.5rem 0", pl: ".5rem" }}>
-         {description}
+          {description}
         </Typography>
-
       </div>
 
       <div>
         {picturePath && (
           <img
-            src={`http://localhost:3001/assets/${picturePath}`}
+            src={`https://hobby-hunter-api.onrender.com/assets/${picturePath}`}
             alt="post"
             className="rounded-lg mt-2"
             style={{
               objectFit: "cover",
               width: "100%",
-              height: "450px", 
+              height: "450px",
             }}
           />
         )}
@@ -167,13 +156,7 @@ const PostWidget = ({
           {comments.map((comment, i) => (
             <Box key={`${name}-${i}`}>
               <Divider />
-              <Comment
-                comment={comment.comment}
-                
-                userPicturePath={comment.userPicturePath}
-              />
-
-
+              <Comment comment={comment.comment} userPicturePath={comment.userPicturePath} />
             </Box>
           ))}
           <Divider />

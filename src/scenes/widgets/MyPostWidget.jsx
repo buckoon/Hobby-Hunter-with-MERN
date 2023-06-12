@@ -3,7 +3,7 @@ import {
   Box,
   Divider,
   Typography,
-   useTheme,
+  useTheme,
   Button,
   IconButton,
   TextField
@@ -41,7 +41,7 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("picturePath", image.name);
     }
 
-    const response = await fetch(`http://localhost:3001/posts`, {
+    const response = await fetch(`https://hobby-hunter-api.onrender.com/posts`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -63,25 +63,22 @@ const MyPostWidget = ({ picturePath }) => {
           Add a Hobby
         </button>
       </div>
-      {displayInput && ( // Add conditional rendering for the Box component
-        <Box className="text-black  flex p-5 mb-5 bg-zinc-200 justify-center rounded-lg border shadow-lg  flex-col z-10 ease-in duration-500"
-        
-        >
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <UserImage image={picturePath} sx={{ marginRight: '0.5rem' }} />
-                <Box sx={{ backgroundColor: 'white', flexGrow: 1, marginLeft: '1rem', borderRadius: '4px' }}>
-                  <TextField
-                    placeholder="List your favorite hobby and instructions..."
-                    onChange={(e) => setPost(e.target.value)}
-                    value={post}
-                    multiline
-                    rows={3}
-                    variant="outlined"
-                    fullWidth
-                  />
-                </Box>
+      {displayInput && (
+        <Box className="text-black  flex p-5 mb-5 bg-zinc-200 justify-center rounded-lg border shadow-lg  flex-col z-10 ease-in duration-500">
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <UserImage image={picturePath} sx={{ marginRight: '0.5rem' }} />
+            <Box sx={{ backgroundColor: 'white', flexGrow: 1, marginLeft: '1rem', borderRadius: '4px' }}>
+              <TextField
+                placeholder="List your favorite hobby and instructions..."
+                onChange={(e) => setPost(e.target.value)}
+                value={post}
+                multiline
+                rows={3}
+                variant="outlined"
+                fullWidth
+              />
             </Box>
-
+          </Box>
 
           {isImage && (
             <Box border={`1px solid ${medium}`} borderRadius="5px" mt="1rem" p="1rem">
@@ -123,29 +120,29 @@ const MyPostWidget = ({ picturePath }) => {
 
           <Divider sx={{ margin: "1.25rem 0" }} />
 
-            <div className= "flex justify-between items-center ">
-                <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
-                <ImageOutlined sx={{ color: mediumMain }} />
-                <Typography
-                    color={mediumMain}
-                    sx={{ "&:hover": { cursor: "pointer", color: medium } }}
-                >
-                    Attach an Image
-                </Typography>
-                </FlexBetween>
+          <div className="flex justify-between items-center">
+            <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
+              <ImageOutlined sx={{ color: mediumMain }} />
+              <Typography
+                color={mediumMain}
+                sx={{ "&:hover": { cursor: "pointer", color: medium } }}
+              >
+                Attach an Image
+              </Typography>
+            </FlexBetween>
 
-                <Button
-                disabled={!post}
-                onClick={handlePost}
-                style={{
-                    color: '#FFFFFF',
-                    backgroundColor: palette.primary.main,
-                    borderRadius: "2rem",
-                }}
-                >
-                POST
-                </Button>
-            </div>
+            <Button
+              disabled={!post}
+              onClick={handlePost}
+              style={{
+                color: '#FFFFFF',
+                backgroundColor: palette.primary.main,
+                borderRadius: "2rem",
+              }}
+            >
+              POST
+            </Button>
+          </div>
         </Box>
       )}
     </div>
