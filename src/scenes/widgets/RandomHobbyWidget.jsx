@@ -24,7 +24,7 @@ function Activities() {
   };
 
   return (
-    <div className="flex h-[150px] flex-col justify-content shadow-xl items-center bg-zinc-200 mb-3 top-[80px] rounded-lg text-black text-center border-b border-gray-600 w-[100%] ">
+    <div className="flex h-[150px] flex-col justify-content shadow-xl items-center bg-zinc-200 mt-3 top-[80px] rounded-lg text-black text-center border-b border-gray-600 w-[100%] ">
       <div className="flex flex-col pt-4 pb-2 px-2 h-[190px] overflow-hidden">
         <div className="flex justify-center"> {/* Add justify-center class */}
           <button

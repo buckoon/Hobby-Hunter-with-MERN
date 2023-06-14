@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   mode: "light",
-  user: null,
+  user: {
+    friends: [], // Initialize the friends property
+  },
   token: null,
   posts: [],
 };
@@ -24,6 +26,7 @@ export const authSlice = createSlice({
     },
     setFriends: (state, action) => {
       if (state.user) {
+        
         state.user.friends = action.payload.friends;
       } else {
         console.error("user friends non-existent :(");

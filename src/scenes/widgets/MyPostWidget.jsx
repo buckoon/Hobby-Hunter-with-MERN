@@ -4,7 +4,6 @@ import {
   Divider,
   Typography,
   useTheme,
-  Button,
   IconButton,
   TextField
 } from "@mui/material";
@@ -131,17 +130,14 @@ const MyPostWidget = ({ picturePath }) => {
               </Typography>
             </FlexBetween>
 
-            <Button
+            <button
               disabled={!post}
               onClick={handlePost}
-              style={{
-                color: '#FFFFFF',
-                backgroundColor: palette.primary.main,
-                borderRadius: "2rem",
-              }}
+              className="flex flex-row bg-indigo-600 px-4 py-2 border-b border-gray-600
+              hover:bg-indigo-300 transition-all duration-200  justify-center  text-white rounded-full hover:shadow-xl  z-5 cursor-pointer"
             >
               POST
-            </Button>
+            </button>
           </div>
         </Box>
       )}

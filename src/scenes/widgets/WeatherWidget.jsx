@@ -46,7 +46,7 @@ function Weather() {
           <div className="space-y-2">
             <button
               type="submit"
-              className=" bg-indigo-600 hover:shadow-xl text-white font-bold py-2 px-6 mb-2 rounded focus:outline-none focus:ring-2 focus:ring-green-600"
+              className=" bg-indigo-600 hover:shadow-xl text-white font-bold py-2 px-6 mb-2 rounded focus:outline-none focus:ring-2 hover:bg-indigo-300"
             >
               Search
             </button>
