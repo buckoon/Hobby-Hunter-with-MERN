@@ -57,11 +57,15 @@ function Navbar() {
       <div className="md:hidden">
         <ul className={!nav ? "hidden" : "absolute bg-zinc-200 w-full px-8"}>
           <li className="border-b-2 border-zinc-300 w-full">
-            <NavLink to="/">Home</NavLink>
+            <NavLink to="/Home">Home</NavLink>
           </li>
           <li className="border-b-2 border-zinc-300 w-full">
             <NavLink to="/About">About</NavLink>
           </li>
+          <li className="border-b-2 border-zinc-300 w-full">
+            <NavLink to="/Tools">Tools</NavLink>
+          </li>
+          
           <button
             className="px-3 py-2 text-white rounded-lg font-medium hover:bg-red-600 transition mr-2 duration-150 ease-in-out ml-2 lg:ml-5 text-sm lg:text-base mb-4 mt-4"
             onClick={logoutOfApp}

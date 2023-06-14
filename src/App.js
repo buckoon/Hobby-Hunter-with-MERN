@@ -3,6 +3,7 @@ import HomePage from "scenes/homePage";
 import AboutPage from "scenes/aboutPage";
 import LoginPage from "scenes/loginPage";
 import ProfilePage from "scenes/profilePage";
+import ToolsPage from "scenes/toolsPage";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
@@ -30,6 +31,10 @@ function App() {
              <Route
               path="/about"
               element={isAuth ? <AboutPage /> : <Navigate to="/" />}
+            />
+              <Route
+              path="/tools"
+              element={isAuth ? <ToolsPage /> : <Navigate to="/" />}
             />
             
             <Route
