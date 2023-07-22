@@ -63,7 +63,7 @@ const Form = () => {
   const handleEmailFocus = () => {
     if (!hasClickedSignUp) {
       alert(
-        "Feel free to sign in using the email: drake@gmail.com and password: abcabc if you prefer not to register with your own email. Please note that the application is hosted on a free deployment service, and there might be a brief delay of up to 15 seconds after submitting the login form while the page loads. Thank you for your understanding!"
+        "Feel free to sign in using the email: drake@gmail.com and password: abcabc if you prefer not to register with your own email. Please note that the application is hosted on a free deployment service, and there might be a brief delay of up to 15 seconds after submitting the login form while the page loads. Thank you for your understanding."
       );
       setHasClickedSignUp(true);
     }
