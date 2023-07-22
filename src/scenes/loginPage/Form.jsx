@@ -58,6 +58,16 @@ const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
+  const [hasClickedSignUp, setHasClickedSignUp] = useState(false);
+
+  const handleEmailFocus = () => {
+    if (!hasClickedSignUp) {
+      alert(
+        "Feel free to sign in using the email: drake@gmail.com and password: abcabc if you prefer not to register with your own email. Please note that the application is hosted on a free deployment service, and there might be a brief delay of up to 15 seconds after submitting the login form while the page loads. Thank you for your understanding!"
+      );
+      setHasClickedSignUp(true);
+    }
+  };
 
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
@@ -244,9 +254,11 @@ const Form = () => {
           </Button>
             <Typography
               onClick={() => {
+                handleEmailFocus();
                 setPageType(isLogin ? "register" : "login");
                 resetForm();
               }}
+              
               sx={{
                 textDecoration: "underline",
                 color: palette.primary.main,
